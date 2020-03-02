@@ -46,18 +46,17 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));     // Public folder for static assets.
 app.use(express.json());               // Parses JSON.
 
-app.use(
-    session({
-        secret: process.env.SECRET,     // Radom string to prevent hacking
-
-        //
-        // More info for the following at
-        // https://www.npmjs.com/package/express-session#resave
-        //
-        resave: false,                  // Default
-        saveUninitialized: false        // Default
-    });
-);
+// app.use(
+//     session({
+//         secret: process.env.SECRET,     // Radom string to prevent hacking
+//         //
+//         // More info for the following at
+//         // https://www.npmjs.com/package/express-session#resave
+//         //
+//         resave: false,                  // Default
+//         saveUninitialized: false        // Default
+//     })
+// )
 
 /*
 ===============================================================================
@@ -83,7 +82,7 @@ app.use(
 //
 
 db.on('error', (err) => console.log(err.message + ' mongod is not running.'));
-db.on('connected', () => console.log('mongo connected: ', MONGODB_URI));
+db.on('connected', () => console.log('mongo connected: ', mongodbURI));
 db.on('disconnected', () => console.log('Mongod disconnected.'));
 
 db.on('open' , ()=>{});
@@ -94,9 +93,9 @@ db.on('open' , ()=>{});
  ===============================================================================
  */
 
-app.use('/caregivers', require('./controllers/caregivers_controller.js'))
-app.use('/sessions', require('./controllers/sessions_controller.js'))
-app.use('/users', require('./controllers/users_controller.js'))
+// app.use('/caregivers', require('./controllers/caregivers_controller.js'))
+// app.use('/sessions', require('./controllers/sessions_controller.js'))
+// app.use('/users', require('./controllers/users_controller.js'))
 
 /*
  ===============================================================================
