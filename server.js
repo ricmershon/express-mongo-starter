@@ -1,58 +1,117 @@
-//___________________
-//Dependencies
-//___________________
-const express = require('express');
-const methodOverride  = require('method-override');
-const mongoose = require ('mongoose');
-const app = express ();
-const db = mongoose.connection;
-//___________________
-//Port
-//___________________
-// Allow use of Heroku's port or your own local port, depending on the environment
-const PORT = process.env.PORT || 3000;
+/*
+ ===============================================================================
+ ===============================================================================
+ =
+ = Project 2: Caregivers Portal
+ = Created: 02-Mar-2020
+ = Created by: Ric Mershon
+ =
+ ===============================================================================
+ ===============================================================================
+ */
 
-//___________________
-//Database
-//___________________
-// How to connect to the database either via heroku or locally
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/ohmycrud';
+/*
+===============================================================================
+= DEPENDENCIES
+===============================================================================
+ */
 
-// Connect to Mongo
-mongoose.connect(MONGODB_URI ,  { useNewUrlParser: true, useUnifiedTopology: true });
+const express = require('express')
+const methodOverride = require('method-override')
+const mongoose = require('mongoose')
+const session = require('express-session')
 
-// Error / success
-db.on('error', (err) => console.log(err.message + ' is Mongod not running?'));
+/*
+ ===============================================================================
+ = CONFIGURATION
+ ===============================================================================
+ */
+
+require('dotenv').config();
+const app = express()
+const db = mongoose.connection
+const PORT = process.env.PORT || 3000; // Allows use of Heroku's or local port.
+const mongodbURI = process.env.MONGODBURI || 'mongodb://localhost:27017/ohmycrud';
+
+/*
+ ===============================================================================
+ = MIDDLEWARE
+ ===============================================================================
+ */
+
+app.use(methodOverride('_method'));    // Allow POST, PUT and DELETE from a form.
+app.use(express.urlencoded({ extended: true }));
+                            // Populates req.body with parsed info
+                            // from forms.
+app.use(express.static('public'));     // Public folder for static assets.
+app.use(express.json());               // Parses JSON.
+
+app.use(
+    session({
+        secret: process.env.SECRET,     // Radom string to prevent hacking
+
+        //
+        // More info for the following at
+        // https://www.npmjs.com/package/express-session#resave
+        //
+        resave: false,                  // Default
+        saveUninitialized: false        // Default
+    });
+);
+
+/*
+===============================================================================
+= DATABASE
+===============================================================================
+*/
+
+    mongoose.connect(
+    mongodbURI,
+    {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useCreateIndex: true,
+        useFindAndModify: false
+    },
+    () => {
+        console.log('Connection with mongod established at', mongodbURI)
+    }
+)
+
+//
+// Callbacks for error or disconnected states on database.
+//
+
+db.on('error', (err) => console.log(err.message + ' mongod is not running.'));
 db.on('connected', () => console.log('mongo connected: ', MONGODB_URI));
-db.on('disconnected', () => console.log('mongo disconnected'));
+db.on('disconnected', () => console.log('Mongod disconnected.'));
 
-// open the connection to mongo
 db.on('open' , ()=>{});
 
-//___________________
-//Middleware
-//___________________
+/*
+ ===============================================================================
+ = Controllers
+ ===============================================================================
+ */
 
-//use public folder for static assets
-app.use(express.static('public'));
+app.use('/caregivers', require('./controllers/caregivers_controller.js'))
+app.use('/sessions', require('./controllers/sessions_controller.js'))
+app.use('/users', require('./controllers/users_controller.js'))
 
-// populates req.body with parsed info from forms - if no data from forms will return an empty object {}
-app.use(express.urlencoded({ extended: false }));// extended: false - does not allow nested objects in query strings
-app.use(express.json());// returns middleware that only parses JSON - may or may not need it depending on your project
-
-//use method override
-app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a form
-
-
-//___________________
-// Routes
-//___________________
-//localhost:3000
+/*
+ ===============================================================================
+ = Define root route
+ ===============================================================================
+ */
 app.get('/' , (req, res) => {
-  res.send('Hello World!');
+res.send('Hello World!');
 });
+// app.get('/', (req, res) => res.redirect('/logs'));
 
-//___________________
-//Listener
-//___________________
-app.listen(PORT, () => console.log( 'Listening on port:', PORT));
+/*
+===============================================================================
+= Listener
+===============================================================================
+*/
+
+app.listen(PORT, () => console.log('Listening on port', PORT));
