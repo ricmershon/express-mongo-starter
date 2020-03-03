@@ -84,7 +84,7 @@ careGivers.get('/seed', (req, res) => {
 careGivers.get('/remove', (req, res) => {
     console.log(`Inside Remove (GET) Route.`);
     Caregiver.remove({}, (error) => {
-        console.log(`Caregiver collection removed`);
+        console.log(`Caregiver collection removed.`);
     })
     res.redirect('/caregivers');
 })
