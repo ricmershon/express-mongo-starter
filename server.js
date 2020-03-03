@@ -17,7 +17,6 @@
  ===============================================================================
  */
 
-require('newrelic')
 const express = require('express')
 const methodOverride = require('method-override')
 const mongoose = require('mongoose');
@@ -33,10 +32,7 @@ require('dotenv').config();
 const app = express()
 const db = mongoose.connection
 const PORT = process.env.PORT || 3000; // Allows use of Heroku's or local port.
-// const mongodbURI = process.env.MONGODBURI || 'mongodb://localhost:27017/caregivers';
-// const mongodbURI =  'mongodb://localhost:27017/caregivers';
-
-const mongodbURI = 'mongodb://heroku_cjqz9nlt:v6v2obuuugkjboil1u2c87j8lm@ds145304.mlab.com:45304/heroku_cjqz9nlt'
+const mongodbURI = 'mongodb://localhost:27017/caregivers' || process.env.MONGODBURI;
 
 /*
  ===============================================================================
@@ -74,7 +70,7 @@ mongoose.connect(
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,
-        // useCreateIndex: true,
+        useCreateIndex: true,
         useFindAndModify: false
     },
     () => {
