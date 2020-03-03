@@ -83,7 +83,7 @@ mongoose.connect(
 // Callbacks for error or disconnected states on database.
 //
 
-db.on('error', (err) => console.log(err.message + ' Mongod is not running.'));
+db.on('error', (err) => console.log(err + ' Mongod is not running.'));
 db.on('connected', () => console.log('Mongo connected: ', mongodbURI));
 db.on('disconnected', () => console.log('Mongod disconnected.'));
 
