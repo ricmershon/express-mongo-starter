@@ -41,7 +41,7 @@ const mongodbURI = process.env.MONGODBURI || 'mongodb://localhost:27017/caregive
  */
 
 app.use(methodOverride('_method'));     // Allow POST, PUT and DELETE from a form.
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
                                         // Populates req.body with parsed info
                                         // from forms.
 app.use(express.static('public'));      // Public folder for static assets.
