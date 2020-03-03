@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <%- include('../partials/head.ejs') %>
+    </head>
+    <body class="page-body">
+        <%- include('../partials/nav.ejs') %>
+
+        <div class="container">
+            <h3><%= careGiver.name %></h3>
+            <p><%= careGiver.description %></p>
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <a href="/caregivers/<%= careGiver.id %>/edit">
+                    <button type="button" class="btn btn-outline-secondary">Edit</button>
+                </a>
+                <form action="/caregivers/<%=careGiver.id%>?_method=DELETE" method="POST">
+                    <button type="submit" class="btn btn-outline-secondary">Delete</button>
+                </form>
+                <a href="/caregivers">
+                    <button type="button" class="btn btn-outline-secondary">Back</button>
+                </a>
+            </div>
+        </div>
+        <%- include('../partials/footer.ejs') %>
+    </body>
+</html>

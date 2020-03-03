@@ -3,6 +3,7 @@
  ===============================================================================
  =
  = Project 2: Caregivers Portal
+ = Module: server.js
  = Created: 02-Mar-2020
  = Created by: Ric Mershon
  =
@@ -11,9 +12,9 @@
  */
 
 /*
-===============================================================================
-= DEPENDENCIES
-===============================================================================
+ ===============================================================================
+ = DEPENDENCIES
+ ===============================================================================
  */
 
 const express = require('express')
@@ -39,12 +40,12 @@ const mongodbURI = process.env.MONGODBURI || 'mongodb://localhost:27017/ohmycrud
  ===============================================================================
  */
 
-app.use(methodOverride('_method'));    // Allow POST, PUT and DELETE from a form.
+app.use(methodOverride('_method'));     // Allow POST, PUT and DELETE from a form.
 app.use(express.urlencoded({ extended: true }));
-                            // Populates req.body with parsed info
-                            // from forms.
-app.use(express.static('public'));     // Public folder for static assets.
-app.use(express.json());               // Parses JSON.
+                                        // Populates req.body with parsed info
+                                        // from forms.
+app.use(express.static('public'));      // Public folder for static assets.
+app.use(express.json());                // Parses JSON.
 
 // app.use(
 //     session({
@@ -59,12 +60,12 @@ app.use(express.json());               // Parses JSON.
 // )
 
 /*
-===============================================================================
-= DATABASE
-===============================================================================
-*/
+ ===============================================================================
+ = DATABASE
+ ===============================================================================
+ */
 
-    mongoose.connect(
+mongoose.connect(
     mongodbURI,
     {
         useNewUrlParser: true,
@@ -81,11 +82,11 @@ app.use(express.json());               // Parses JSON.
 // Callbacks for error or disconnected states on database.
 //
 
-db.on('error', (err) => console.log(err.message + ' mongod is not running.'));
-db.on('connected', () => console.log('mongo connected: ', mongodbURI));
+db.on('error', (err) => console.log(err.message + ' Mongod is not running.'));
+db.on('connected', () => console.log('Mongo connected: ', mongodbURI));
 db.on('disconnected', () => console.log('Mongod disconnected.'));
 
-db.on('open' , ()=>{});
+db.on('open' , () => {});
 
 /*
  ===============================================================================
@@ -93,24 +94,26 @@ db.on('open' , ()=>{});
  ===============================================================================
  */
 
-// app.use('/caregivers', require('./controllers/caregivers_controller.js'))
+app.use('/caregivers', require('./controllers/caregivers_controller.js'))
 // app.use('/sessions', require('./controllers/sessions_controller.js'))
-// app.use('/users', require('./controllers/users_controller.js'))
+app.use('/users', require('./controllers/users_controller.js'))
 
 /*
  ===============================================================================
  = Define root route
  ===============================================================================
  */
-app.get('/' , (req, res) => {
-res.send('Hello World!');
-});
-// app.get('/', (req, res) => res.redirect('/logs'));
+
+// app.get('/' , (req, res) => {
+//     res.send('Hello World!');
+// });
+
+app.get('/', (req, res) => res.redirect('/caregivers'));
 
 /*
-===============================================================================
-= Listener
-===============================================================================
+ ===============================================================================
+ = Listener
+ ===============================================================================
 */
 
 app.listen(PORT, () => console.log('Listening on port', PORT));

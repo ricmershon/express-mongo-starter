@@ -1,3 +1,11 @@
-body {
-    padding-top: 3.5rem;
+.index-body {
+    padding-top: 3rem;
+}
+
+.page-body {
+    padding-top: 5rem;
+}
+
+.description {
+    height: 5em;
 }
