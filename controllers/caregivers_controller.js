@@ -19,9 +19,6 @@
  ===============================================================================
  */
 
-
-
-
 const express = require('express')
 const Caregiver = require('../models/caregivers.js')
 const careGiverSeed = require('../models/seed.js')
@@ -50,7 +47,7 @@ const isAuthenticated = (req, res, next) => {
  */
 
 careGivers.get('/', (req, res) => {
-    // console.log(`Inside Index (GET) Route.`);
+    console.log(`Inside Index (GET) Route.`);
     Caregiver.find({}, (error, allCareGivers) => {
         res.render('caregivers/index.ejs', {
             careGivers: allCareGivers,
