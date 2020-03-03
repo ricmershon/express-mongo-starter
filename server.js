@@ -20,7 +20,7 @@
 require('newrelic')
 const express = require('express')
 const methodOverride = require('method-override')
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 const session = require('express-session')
 
 /*
@@ -33,7 +33,8 @@ require('dotenv').config();
 const app = express()
 const db = mongoose.connection
 const PORT = process.env.PORT || 3000; // Allows use of Heroku's or local port.
-const mongodbURI = process.env.MONGODBURI || 'mongodb://localhost:27017/caregivers';
+// const mongodbURI = process.env.MONGODBURI || 'mongodb://localhost:27017/caregivers';
+const mongodbURI =  'mongodb://localhost:27017/caregivers';
 
 /*
  ===============================================================================
