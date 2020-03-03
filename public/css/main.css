@@ -9,3 +9,11 @@
 .description {
     height: 5em;
 }
+
+.primary-theme {
+    background-color: #82b3ae;
+}
+
+.secondary-theme {
+    background-color: #94b9af;
+}
