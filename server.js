@@ -47,17 +47,17 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static('public'));      // Public folder for static assets.
 app.use(express.json());                // Parses JSON.
 
-// app.use(
-//     session({
-//         secret: process.env.SECRET,     // Radom string to prevent hacking
-//         //
-//         // More info for the following at
-//         // https://www.npmjs.com/package/express-session#resave
-//         //
-//         resave: false,                  // Default
-//         saveUninitialized: false        // Default
-//     })
-// )
+app.use(
+    session({
+        secret: process.env.SECRET,     // Radom string to prevent hacking
+        //
+        // More info for the following at
+        // https://www.npmjs.com/package/express-session#resave
+        //
+        resave: false,                  // Default
+        saveUninitialized: false        // Default
+    })
+)
 
 /*
  ===============================================================================
@@ -70,7 +70,7 @@ mongoose.connect(
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,
-        // useCreateIndex: true,
+        useCreateIndex: true,
         useFindAndModify: false
     },
     () => {
@@ -95,7 +95,7 @@ db.on('open' , () => {});
  */
 
 app.use('/caregivers', require('./controllers/caregivers_controller.js'))
-// app.use('/sessions', require('./controllers/sessions_controller.js'))
+app.use('/sessions', require('./controllers/sessions_controller.js'))
 app.use('/users', require('./controllers/users_controller.js'))
 
 /*

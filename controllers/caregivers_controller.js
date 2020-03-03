@@ -51,7 +51,7 @@ careGivers.get('/', (req, res) => {
     Caregiver.find({}, (error, allCareGivers) => {
         res.render('caregivers/index.ejs', {
             careGivers: allCareGivers,
-            // currentUser: req.session.currentUser,
+            currentUser: req.session.currentUser,
             tabTitle: `Home`
         })
     })
@@ -63,7 +63,7 @@ careGivers.get('/', (req, res) => {
  ===============================================================================
  */
 
-careGivers.get('/seed', (req, res) => {
+careGivers.get('/seed', isAuthenticated, (req, res) => {
     console.log(`Inside Seed (GET) Route.`);
     Caregiver.create(careGiverSeed, (error, data) => {
         if (error) {
@@ -81,7 +81,7 @@ careGivers.get('/seed', (req, res) => {
  ===============================================================================
  */
 
-careGivers.get('/remove', (req, res) => {
+careGivers.get('/remove', isAuthenticated, (req, res) => {
     console.log(`Inside Remove (GET) Route.`);
     Caregiver.remove({}, (error) => {
         console.log(`Caregiver collection removed.`);
@@ -95,10 +95,10 @@ careGivers.get('/remove', (req, res) => {
  ===============================================================================
  */
 
-careGivers.get('/new', (req, res) => {
+careGivers.get('/new', isAuthenticated, (req, res) => {
     console.log(`Inside New (GET) Route.`);
     res.render('caregivers/new.ejs', {
-        // currentUser: req.session.currentUser,
+        currentUser: req.session.currentUser,
         tabTitle: `New Caregiver`
     })
 })
@@ -109,7 +109,7 @@ careGivers.get('/new', (req, res) => {
  ===============================================================================
  */
 
-careGivers.post('/', (req, res) => {
+careGivers.post('/', isAuthenticated, (req, res) => {
     console.log(`Inside Create (POST) Route.`);
     Caregiver.create(req.body, (error, createdCareGiver) => {
         if (error) {
@@ -126,12 +126,12 @@ careGivers.post('/', (req, res) => {
  ===============================================================================
  */
 
-careGivers.get('/:id', (req, res) => {
+careGivers.get('/:id', isAuthenticated, (req, res) => {
     console.log(`Inside Show (GET) Route.`);
     Caregiver.findById(req.params.id, (error, foundCareGiver) => {
         res.render('caregivers/show.ejs', {
             careGiver: foundCareGiver,
-            // currentUser: req.session.currentUser,
+            currentUser: req.session.currentUser,
             tabTitle: foundCareGiver.name
         })
     })
@@ -144,7 +144,7 @@ careGivers.get('/:id', (req, res) => {
  ===============================================================================
  */
 
-careGivers.get('/:id/edit', (req, res) => {
+careGivers.get('/:id/edit', isAuthenticated, (req, res) => {
     console.log(`Inside Edit (GET) Route.`);
     Caregiver.findById(req.params.id, (error, foundCareGiver) => {
         if (error) {
@@ -152,7 +152,7 @@ careGivers.get('/:id/edit', (req, res) => {
         } else {
             res.render('caregivers/edit.ejs', {
                 careGiver: foundCareGiver,
-                // currentUser: req.session.currentUser,
+                currentUser: req.session.currentUser,
                 tabTitle: 'Update Caregiver Entry'
             })
         }
@@ -166,7 +166,7 @@ careGivers.get('/:id/edit', (req, res) => {
  ===============================================================================
  */
 
-careGivers.put('/:id', (req, res) => {
+careGivers.put('/:id', isAuthenticated, (req, res) => {
     console.log(`Inside Update (PUT) Route.`);
     console.log(req.body);
     Caregiver.findByIdAndUpdate(req.params.id, req.body, { new: true }, (error, updatedCareGiver) => {
@@ -184,7 +184,7 @@ careGivers.put('/:id', (req, res) => {
  ===============================================================================
  */
 
-careGivers.delete('/:id', (req, res) => {
+careGivers.delete('/:id', isAuthenticated, (req, res) => {
     console.log(`Inside Detroy (DELETE) Route.`);
     Caregiver.findByIdAndRemove(req.params.id, (err, deletedCareGiver) => {
         if (err) {

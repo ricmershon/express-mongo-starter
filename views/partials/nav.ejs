@@ -12,9 +12,20 @@
                 <a class="nav-link" href="/caregivers/new">New Caregiver</a>
             </li>
         </ul>
-        <span class="nav-item active">
-            <a class="nav-link" href="#" style="color: white;">Login</a>
-        </span>
-        <button class="btn btn-outline-light" type="submit">Sign Up</button>
+        <% if (currentUser) { %>
+            <span class="nav-item inactive">
+                <a class="nav-link disabled" href="#" style="color: white;">Welcome <%= currentUser.username %></a>
+            </span>
+
+            <form action="/sessions?_method=DELETE" method="POST">
+                <button type="submit" class="btn btn-outline-light">Log Out</button>
+            </form>
+        <% } else { %>
+            <span class="nav-item active">
+                <a class="nav-link" href="/sessions/new" style="color: white;">Login</a>
+            </span>
+            <a href="/users/new">
+            <button class="btn btn-outline-light" type="submit">Sign Up</button></a>
+        <% } %>
     </div>
 </nav>

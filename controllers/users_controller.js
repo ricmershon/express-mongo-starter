@@ -1,18 +1,27 @@
-/*
- ===============================================================================
- =
- = User Schema
- =
- ===============================================================================
- */
+const bcrypt = require('bcrypt')
+const express = require ('express')
+const users = express.Router()
+const User = require('../models/users.js')
 
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-
-const userSchema = new Schema({
-    username: { type: String, unique: true, required: true },
-    password: String
+// Show sign up form
+users.get('/new', (req, res) => {
+    res.render('users/new.ejs', {
+        currentUser: req.session.currentUser,
+        tabTitle: `New User`})
 })
 
-const User = mongoose.model('User', userSchema);
-module.exports = User;
+
+// Create new user
+users.post('/', (req,res) => {
+    req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10))
+    User.create(req.body, (err, createdUser) => {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log('User is created', createdUser);
+            res.redirect('/')
+        }
+    })
+})
+
+module.exports = users;
