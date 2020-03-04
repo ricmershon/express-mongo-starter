@@ -2,7 +2,7 @@
  ===============================================================================
  ===============================================================================
  =
- = Project 2: Review Portal
+ = Project 2: Caregivers Controllers
  = Module: caregivers_controllers.js
  = Created: 02-Mar-2020
  = Created by: Ric Mershon
@@ -83,7 +83,7 @@ careGivers.get('/seed', isAuthenticated, (req, res) => {
 
 careGivers.get('/remove', isAuthenticated, (req, res) => {
     console.log(`Inside Remove (GET) Route.`);
-    Caregiver.remove({}, (error) => {
+    Caregiver.deleteMany({}, (error) => {
         console.log(`Caregiver collection removed.`);
     })
     res.redirect('/caregivers');
@@ -103,6 +103,46 @@ careGivers.get('/new', isAuthenticated, (req, res) => {
     })
 })
 
+/**********************************
+ for reviews
+ **********************************/
+
+careGivers.get('/:id/reviews/new', isAuthenticated, (req, res) => {
+    console.log(`Inside Review New (GET) Route.`);
+    Caregiver.findById(req.params.id, (error, foundCareGiver) => {
+        res.render('reviews/new.ejs', {
+            careGiver: foundCareGiver,
+            currentUser: req.session.currentUser,
+            tabTitle: `New Review`
+        })
+    })
+})
+
+careGivers.post('/:id/reviews', isAuthenticated, (req, res) => {
+    console.log(`Inside Review Create (POST) Route. Rating is: ${req.body.rating} `);
+    Caregiver.findByIdAndUpdate(req.params.id, {
+        $push: {
+            reviews: {
+                text: req.body.review,
+                postedBy: req.body.postedBy,
+                rating: req.body.rating
+            }
+        }
+    },
+    { new: true }, (error, updatedCareGiver) => {
+        if (error) {
+            console.log(`There is an error in the database through the update route: ${error}.`);
+        } else {
+            console.log('No error on database push');
+            res.redirect('/caregivers')
+        }
+    })
+})
+
+/**********************************
+ end for reviews
+ **********************************/
+
 /*
  ===============================================================================
  = Create (POST) Route
@@ -111,6 +151,11 @@ careGivers.get('/new', isAuthenticated, (req, res) => {
 
 careGivers.post('/', isAuthenticated, (req, res) => {
     console.log(`Inside Create (POST) Route.`);
+    if (req.body.takingNewClients === 'on') {
+        req.body.takingNewClients = true
+    } else {
+        req.body.takingNewClients = false
+    }
     Caregiver.create(req.body, (error, createdCareGiver) => {
         if (error) {
             console.log(`There was an error creating new caregiver record: ${error}`);
@@ -171,16 +216,14 @@ careGivers.put('/:id', isAuthenticated, (req, res) => {
     console.log(req.body);
     if (req.body.takingNewClients === 'on') {
         req.body.takingNewClients = true
-        console.log('check box on');
     } else {
         req.body.takingNewClients = false
-        console.log('check box off');
     }
     Caregiver.findByIdAndUpdate(req.params.id, req.body, { new: true }, (error, updatedCareGiver) => {
         if (error) {
             console.log(`There is an error in the database through the update route: ${error}.`)
         } else {
-            res.redirect('/caregivers')
+            res.redirect('/caregivers/')
         }
     })
 })
@@ -197,7 +240,6 @@ careGivers.delete('/:id', isAuthenticated, (req, res) => {
         if (err) {
             console.log('There was an error deleting the care giver.');
         } else {
-            console.log('Deleted Caregiver', deletedCareGiver);
             res.redirect('/caregivers')
         }
     })

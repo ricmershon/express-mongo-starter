@@ -11,6 +11,10 @@
             <p><%= careGiver.description %></p>
             <p>Services: <%= careGiver.services %><br>
             <img src="/img/316-arrow-up-right2.svg" height="15" widht="15"> <a href="<%= careGiver.webSite %>">Website</a> <img src="/img/070-envelop.svg" height="15" widht="15"> <a href="mailto:<%= careGiver.email %>"><%= careGiver.email %></a> <img src="/img/067-phone.svg" height="15" widht="15"> <%= careGiver.phone %></p>
+            <% if (careGiver.takingNewClients != true) { %>
+                <p>We are no longer taking new clients.</p>
+            <% } %>
+
             <div class="btn-group" role="group">
                 <a href="/caregivers/<%= careGiver.id %>/edit">
                     <button type="button" class="btn btn-outline-light primary-theme">Edit</button>
@@ -25,16 +29,16 @@
             <hr>
         </div>
         <div class="container">
-            <a href="/caregivers/<%= careGiver.id %>/review">
+            <a href="/caregivers/<%= careGiver.id %>/reviews/new">
                 <button type="submit" class="btn btn-secondary secondary-theme btn-outline-light">Start your review of <%= careGiver.name %></button>
             </a>
-            <h4 class="reviews">Current Reviews</h4>
+            <h4 class="reviews">Reviews</h4>
             <div class="row">
                 <% for (let review of careGiver.reviews) { %>
                     <div class="col-sm-6 review-card">
                         <div class="card">
                             <div class="card-body">
-                                <p class="card-text"><%= review.rating %></p>
+                                <p class="card-text">Rating: <%= review.rating %></p>
                                 <p class="card-text">Posted by: <%= review.postedBy %></p>
                                 <p class="card-text"><%= review.text %></p>
                             </div>

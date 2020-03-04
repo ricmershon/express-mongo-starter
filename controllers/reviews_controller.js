@@ -2,8 +2,8 @@
  ===============================================================================
  ===============================================================================
  =
- = Project 2: Review Portal
- = Module: caregivers_controllers.js
+ = Project 2: Review Controllers
+ = Module: reviews_controllers.js
  = Created: 02-Mar-2020
  = Created by: Ric Mershon
  =
@@ -46,9 +46,9 @@ const isAuthenticated = (req, res, next) => {
  ===============================================================================
  */
 
-reviews.get('/:id/review', isAuthenticated, (req, res) => {
+reviews.get('/caregivers/:id/reviews/new', isAuthenticated, (req, res) => {
     console.log(`Inside Review New (GET) Route.`);
-    res.render('caregivers/new.ejs', {
+    res.render('reviews/new.ejs', {
         currentUser: req.session.currentUser,
         tabTitle: `New Caregiver`
     })

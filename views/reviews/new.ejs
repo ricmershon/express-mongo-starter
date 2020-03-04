@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <%- include('../partials/head.ejs') %>
+    </head>
+    <body class="page-body">
+        <%- include('../partials/nav.ejs') %>
+        <div class="container">
+            <h3>New Review for <%= careGiver.name %></h3>
+            <form  action="/caregivers/<%= careGiver.id %>/reviews" method="POST">
+                <div class="form-group">
+                    <label>Your Name</label>
+                    <input type="text" class="form-control" name="postedBy">
+                </div>
+                <label for="exampleFormControlSelect1">Rating</label>
+                <select name="rating" class="form-control" id="exampleFormControlSelect1">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+                <div class="form-group">
+                    <label class="reviews">Review</label>
+                    <textarea type="textarea" rows="3" class="form-control description" name="review"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-secondary secondary-theme btn-outline-light" name="<%= careGiver.id %>">Submit</button>
+            </form>
+        </div>
+        <%- include('../partials/footer.ejs') %>
+    </body>
+</html>
