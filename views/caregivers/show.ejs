@@ -9,11 +9,7 @@
         <div class="container">
             <h3><%= careGiver.name %></h3>
             <p><%= careGiver.description %></p>
-            <p>Services:
-                <% for (let cg of careGiver.services) { %>
-                    <%= cg %>,
-                <% } %>
-            <br>
+            <p>Services: <%= careGiver.services %><br>
             <img src="/img/316-arrow-up-right2.svg" height="15" widht="15"> <a href="<%= careGiver.webSite %>">Website</a> <img src="/img/070-envelop.svg" height="15" widht="15"> <a href="mailto:<%= careGiver.email %>"><%= careGiver.email %></a> <img src="/img/067-phone.svg" height="15" widht="15"> <%= careGiver.phone %></p>
             <div class="btn-group" role="group">
                 <a href="/caregivers/<%= careGiver.id %>/edit">

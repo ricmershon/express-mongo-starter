@@ -169,6 +169,13 @@ careGivers.get('/:id/edit', isAuthenticated, (req, res) => {
 careGivers.put('/:id', isAuthenticated, (req, res) => {
     console.log(`Inside Update (PUT) Route.`);
     console.log(req.body);
+    if (req.body.takingNewClients === 'on') {
+        req.body.takingNewClients = true
+        console.log('check box on');
+    } else {
+        req.body.takingNewClients = false
+        console.log('check box off');
+    }
     Caregiver.findByIdAndUpdate(req.params.id, req.body, { new: true }, (error, updatedCareGiver) => {
         if (error) {
             console.log(`There is an error in the database through the update route: ${error}.`)
