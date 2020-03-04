@@ -23,21 +23,19 @@
             <%# Container for Caregiver listing %>
 
             <div class="container">
+                <div class="row">
 
-                <%# List of Caregivers %>
+                    <%# List of Caregivers %>
 
-                <% for (let cg of careGivers) { %>
-                    <div class="card caregiver-card">
-                        <h5 class="card-header"><%= cg.name %></h5>
-                        <div class="card-body">
-                            <p><img src="img/star-sharp.svg" height="15" width="15"</p>
-                            <p class="card-text text-truncate"><%= cg.description %></p>
-                            <a href="/caregivers/<%= cg.id %>" class="btn btn-outline-light btn-sm primary-theme">View details &raquo;</a>
+                    <% for (let i = 0; i < careGivers.length; i++) { %>
+                        <div class="col-md-4">
+                            <h5><%= careGivers[i].name %></h5>
+                            <p class="text-truncate"><%= careGivers[i].description %></p>
+                            <p><a class="btn btn-outline-light btn-sm primary-theme" href="/caregivers/<%= careGivers[i].id %>" role="button">View details &raquo;</a></p>
                         </div>
-                    </div>
-
-                <% } %>
-                <hr>
+                    <% } %>
+                    <hr>
+                </div>
             </div>
         </main>
         <%- include('../partials/footer.ejs') %>

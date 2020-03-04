@@ -33,7 +33,7 @@ const app = express()
 const db = mongoose.connection
 const PORT = process.env.PORT || 3000; // Allows use of Heroku's or local port.
 // const mongodbURI = process.env.MONGODBURI || 'mongodb://localhost:27017/caregivers';
-const mongodbURI = process.env.MONGODBURI || 'mongodb://localhost:27017/caregivers';
+const mongodbURI = 'mongodb://localhost:27017/caregivers' || process.env.MONGODBURI;
 
 
 /*
@@ -99,6 +99,7 @@ db.on('open' , () => {});
 app.use('/caregivers', require('./controllers/caregivers_controller.js'))
 app.use('/sessions', require('./controllers/sessions_controller.js'))
 app.use('/users', require('./controllers/users_controller.js'))
+app.use('/reviews', require('./controllers/reviews_controller.js'))
 
 /*
  ===============================================================================

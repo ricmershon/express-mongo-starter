@@ -2,7 +2,7 @@
  ===============================================================================
  ===============================================================================
  =
- = Project 2: Caregivers Portal
+ = Project 2: Review Portal
  = Module: caregivers_controllers.js
  = Created: 02-Mar-2020
  = Created by: Ric Mershon
@@ -25,7 +25,6 @@ const careGiverSeed = require('../models/seed.js')
 const careGivers = express.Router()
 
 const isAuthenticated = (req, res, next) => {
-    console.log(req.session);
     if (req.session.currentUser) {
         return next()
     } else {

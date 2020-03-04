@@ -4,10 +4,12 @@ module.exports = [
         "location": "Georgia",
         "email": "info@caravita.com",
         "phone": "888.888.8888",
+        "webSite": "https://www.caravitahomecare.com/",
         "contact.firstName": "Zelda",
         "contact.lastName": "Knish",
         "description": "Most home care agencies are national franchises run by business people, not home care professionals. CaraVita Home Care, on the other hand, has been locally owned and operated since its inception. The company was designed by our founder Beth Cayce to fill in a gap she saw between the healthcare industry and families in assisting our community’s seniors to age gracefully in place. She believed that by assembling a group of seasoned health and wellness experts, we could design programs that addressed factors that contribute to functional decline. We share this knowledge with our families’ in-home caregivers and the community at large. The investment we place in the welfare of our clients is why we were chosen in 2014 as the GNFCC Health Care Champion, the 2013 Georgia Small Business Person of the Year by the Small Business Association, and a community site for Second Wind Dreams’ Virtual Dementia Tour®.",
         "takingNewClients": true,
+        "services": [ "Companion Care", "Personal Care", "Proxy Care" ],
         "rating": 5,
         "reviews": [
             {

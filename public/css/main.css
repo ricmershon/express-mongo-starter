@@ -25,3 +25,11 @@
 ul {
     list-style-type: none;
 }
+
+.caregiver-card, .review-card {
+    margin-bottom: 1em;
+}
+
+.reviews {
+    margin-top: 1em;
+}
