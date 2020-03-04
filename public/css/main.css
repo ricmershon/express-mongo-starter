@@ -1,5 +1,5 @@
 .index-body {
-    padding-top: 3rem;
+    padding-top: 1rem;
 }
 
 .page-body {
@@ -16,4 +16,12 @@
 
 .secondary-theme {
     background-color: #94b9af;
+}
+
+.footer-background {
+    background-color: #eeeeee;
+}
+
+ul {
+    list-style-type: none;
 }

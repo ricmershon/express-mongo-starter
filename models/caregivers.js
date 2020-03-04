@@ -7,7 +7,9 @@
  */
 
 const mongoose = require('mongoose');
-const careGiverSchema = new mongoose.Schema(
+const Review = require('./reviews.js')
+
+const careGiverSchema = mongoose.Schema(
     {
         name: { type: String, required: true },
         location: { type: String, required: false },
@@ -20,11 +22,7 @@ const careGiverSchema = new mongoose.Schema(
         description: { type: String, required: true },
         takingNewClients: { type: Boolean, default: false },
         rating: { type: Number, max: 5 },
-        reviews : [{
-            text: String,
-            postedBy: String,
-            rating: { type: Number, max: 5 }
-        }]
+        reviews : [ Review.schema ]
     },
     { timestamps: true }
 );

@@ -25,6 +25,7 @@ const careGiverSeed = require('../models/seed.js')
 const careGivers = express.Router()
 
 const isAuthenticated = (req, res, next) => {
+    console.log(req.session);
     if (req.session.currentUser) {
         return next()
     } else {
