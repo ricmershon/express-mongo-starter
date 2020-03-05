@@ -130,6 +130,7 @@ Several partials are used:
 
 ## Known Issues
 * Proper handling of failed logins.
+* .env issues.
 
 ## Additional Routes/User Types
 * User
