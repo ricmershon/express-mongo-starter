@@ -18,10 +18,11 @@ Got to https://rmersh-express-mongo-example.herokuapp.com/.
 
 1. Built with Node.js backend tools.
 2. Uses a central server file, server.js, as an entry point for the applications. Defines all the dependencies, configuration, middleware, database opertaions and controllers needed for the app to run. Defines the root route and sets up the listener for the html port.
-3. Uses public folder for css and images.
-4. Uses partials for head, nav and footer elements.
-5. Incorporates a mobile first and responsive design using Bootstrap.
-6. Sticky menu bar.
+3. Relational model between caregivers and reviews.
+4. Uses public folder for css and images.
+5. Uses partials for head, nav and footer elements.
+6. Incorporates a mobile first and responsive design using Bootstrap.
+7. Sticky menu bar.
 
 ## MongoDB Schemas
 There are schemas for `caregivers`, `users` and `reviews`.
