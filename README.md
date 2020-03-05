@@ -19,34 +19,82 @@ Got to https://rmersh-express-mongo-example.herokuapp.com/.
 5. Incorporates responsive design.
 6. Sticky menu bar
 
+## MongoDB Schemas
+There are schemas for `caregivers`, `users` and `reviews`.
+
+### Caregiver Schema
+
+```
+const careGiverSchema = mongoose.Schema(
+    {
+        name: { type: String, required: true },
+        location: { type: String, required: false },
+        email: { type: String, required: false },
+        phone: { type: String, required: false },
+        webSite: String,
+        contact: {
+            firstName: String,
+            lastName: String,
+        },
+        description: { type: String, required: true },
+        takingNewClients: { type: Boolean, default: false },
+        services: Array,
+        rating: { type: Number, max: 5 },
+        reviews : [ Review.schema ]
+    },
+    { timestamps: true }
+);
+```
+
+### Users Schema
+
+```
+const userSchema = new Schema({
+    username: { type: String, unique: true, required: true },
+    password: String
+})
+```
+
+### Reviews Schema
+
+```
+const reviewSchema = new mongoose.Schema(
+    {
+        text: String,
+        postedBy: String,
+        rating: { type: Number, max: 5 }
+    }
+)
+```
+
 ## Routes
 There are routes for `caregivers`, `reviews`, `sessions` and `users`.
 
 ### Caregivers Routes
 
-| Action | URL | HTTP Verb |
-| ------ |---  | --------- |
-| Index | /caregivers | GET |
-| New | /caregivers/new | GET |
-| Create | /caregivers | POST |
-| Show | /caregivers/:id | GET |
-| Edit | /caregivers/:id/edit | GET |
-| Update | /caregivers/:id | PUT |
-| Destroy | /caregivers/:id | DELETE |
+| Action | URL | HTTP Verb | Description |
+| ------ |---  | --------- | ----------- |
+| Index | /caregivers | GET | Displays all caregivers |
+| New | /caregivers/new | GET | Displays new caregiver form |
+| Create | /caregivers | POST | Creates new caregiver |
+| Show | /caregivers/:id | GET | Shows an individual caregiver's information |
+| Edit | /caregivers/:id/edit | GET | Displays the edit caregiver form |
+| Update | /caregivers/:id | PUT | Changes caregiver with info from Edit action |
+| Destroy | /caregivers/:id | DELETE | Deletes a caregiver |
 
 #### Additional Routes for Setup and Reset
 
-| Action | URL | HTTP Verb |
-| ------ |---  | --------- |
-| Seed | /caregivers/seed | GET |
-| Remove | /caregivers/remove | GET |
+| Action | URL | HTTP Verb | Description |
+| ------ |---  | --------- | ----------- |
+| Seed | /caregivers/seed | GET | Seeds database |
+| Remove | /caregivers/remove | GET | Resets database |
 
-### Reviewers Routes
+### Reviews Routes
 
-| Action | URL | HTTP Verb |
-| ------ |---  | --------- |
-| New | /caregivers/:id/reviews/new | GET |
-| Create | /caregivers/:id/reviews | POST |
+| Action | URL | HTTP Verb | Description |
+| ------ |---  | --------- | ----------- |
+| New | /caregivers/:id/reviews/new | GET | Display review form |
+| Create | /caregivers/:id/reviews | POST | Creates new review |
 
 ### User Routes
 
@@ -76,28 +124,22 @@ Several partials are used:
 
 ## Technologies used:
 
-* [Express](https://expressjs.com/) backend framework for Node.js.
-* [method-override](https://www.npmjs.com/package/method-override) to use HTTP verbs PUT and DELETE where not otherwise supported by the client.
+* [Express](https://expressjs.com/) - backend framework for Node.js.
+* [method-override](https://www.npmjs.com/package/method-override) - to use HTTP verbs PUT and DELETE where not otherwise supported by the client.
 * [MongoDB](https://www.mongodb.com/) - a general purpose, document-based, distributed database.
 * [Mongoose](https://mongoosejs.com/) - MongoDB object modeling for Node.js.
 * [express-session](https://www.npmjs.com/package/express-session) - middleware for creating sessions.
-* [dotenv](https://www.npmjs.com/package/dotenv) for loading environment variables from a .env file into process.env.
-* [Bootstrap](https://getbootstrap.com/) - For a responsive, mobile-first layout.
+* [dotenv](https://www.npmjs.com/package/dotenv) - for loading environment variables from a .env file into process.env.
+* [Bootstrap](https://getbootstrap.com/) - for a responsive, mobile-first layout.
 
 
 ## Known Issues
-* Slight movement of the header text on the top right when data is displayed.
-* Top of the submenu disappears when the window is scrolled all the way to the bottom.
+* Proper handling of failed logins.
 
 ## Areas for Improvement
-
-### User Interface
-* For context, I would like to see the country and category sections have their hover changes remain while stories are displayed.
-
-### JavaScript
-More work could be done to put code into objects.
+* Clean up footer.
+* A lot of additional functionality.
+* Would like to understand better how to incorporate code into objects.
 
 ## Acknowledgements
-Thank you to King Arthur for advice, guidance, support and chocolate chip cookie recipes!!!
-
-Karolin for the dotted notebook recommendation.
+Thanks Brendan!
