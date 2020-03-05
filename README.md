@@ -131,6 +131,20 @@ Several partials are used:
 ## Known Issues
 * Proper handling of failed logins.
 
+## Additional Routes/User Types
+* User
+* Care manager
+* Care provider
+* Events
+* Blog entries
+* living communities
+* Law issues
+* Financial issues
+* Moving services
+* News related to seniors
+* Doctors
+* Newsletter
+
 ## Areas for Improvement
 * Clean up footer.
 * General navigation.
