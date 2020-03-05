@@ -5,6 +5,8 @@ Online resource for children of aging parents.
 Ric Mershon
 
 ## Background
+After three years of experience managing the care of my elderly parents I've been unable to find a single resource for the caregivers of elderly that addresses all the issues for caregivers.
+
 See the [project markdown](https://git.generalassemb.ly/Software-Engineering-Immersive-Remote/SEIR-Waverider/tree/master/projects/project_2) for more information.
 ## Accessing the Application
 
@@ -145,6 +147,7 @@ Several partials are used:
 * News related to seniors
 * Doctors
 * Newsletter
+* Message board
 
 ## Areas for Improvement
 * Clean up footer.
