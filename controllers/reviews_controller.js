@@ -2,7 +2,7 @@
  ===============================================================================
  ===============================================================================
  =
- = Project 2: Review Controllers
+ = Project 2: Caregivers Portal
  = Module: reviews_controllers.js
  = Created: 02-Mar-2020
  = Created by: Ric Mershon
@@ -82,7 +82,7 @@ reviews.post('/:id', isAuthenticated, (req, res) => {
 /*
  ===============================================================================
  =
- = Make careGivers router functions available to other server components.
+ = Make reviews router functions available to other server components.
  =
  ===============================================================================
  */

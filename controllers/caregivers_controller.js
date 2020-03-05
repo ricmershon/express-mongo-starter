@@ -2,10 +2,15 @@
  ===============================================================================
  ===============================================================================
  =
- = Project 2: Caregivers Controllers
+ = Project 2: Caregivers Portal
  = Module: caregivers_controllers.js
  = Created: 02-Mar-2020
  = Created by: Ric Mershon
+ =
+ = Description: Contains routes for managing all the functionality of the
+ = application not related to users, sessions and reviews.
+ =
+ = NOTE: review routes are in this module temporarily.
  =
  ===============================================================================
  ===============================================================================
@@ -103,9 +108,9 @@ careGivers.get('/new', isAuthenticated, (req, res) => {
     })
 })
 
-/**********************************
- for reviews
- **********************************/
+/********************************************************************************
+ for reviews - couldn't get this to work in another contoller file.
+ ******************************************************************************/
 
 careGivers.get('/:id/reviews/new', isAuthenticated, (req, res) => {
     console.log(`Inside Review New (GET) Route.`);

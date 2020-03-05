@@ -1,15 +1,46 @@
+/*
+ ===============================================================================
+ ===============================================================================
+ =
+ = Project 2: Caregivers Portal
+ = Module: sessions_controllers.js
+ = Created: 02-Mar-2020
+ = Created by: Ric Mershon
+ =
+ = Description: Contains routes for managing user sessions.
+ =
+ ===============================================================================
+ ===============================================================================
+ */
+
+/*
+ ===============================================================================
+ = Dependencies and Configuration
+ ===============================================================================
+ */
+
 const bcrypt = require('bcrypt')
 const express = require('express')
 const sessions = express.Router()
 const User = require('../models/users.js')
 
-module.exports = sessions;
+/*
+ ===============================================================================
+ = New (GET) Route - displays login form.
+ ===============================================================================
+ */
 
 sessions.get('/new', (req, res) => {
     res.render('sessions/new.ejs',
         { currentUser: req.session.currentUser, tabTitle: `Login` }
     )
 })
+
+/*
+ ===============================================================================
+ = Create (POST) Route - creates the new session with successful login.
+ ===============================================================================
+ */
 
 sessions.post('/', (req, res) => {
     User.findOne({ username: req.body.username }, (err, foundUser) => {
@@ -27,6 +58,12 @@ sessions.post('/', (req, res) => {
         }
     })
 })
+
+/*
+ ===============================================================================
+ = Destroy (DELETE) Route - logs out and deletes the session.
+ ===============================================================================
+ */
 
 sessions.delete('/', (req, res) => {
     console.log('Inside sessions delete route.');

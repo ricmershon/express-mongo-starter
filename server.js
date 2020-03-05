@@ -7,6 +7,11 @@
  = Created: 02-Mar-2020
  = Created by: Ric Mershon
  =
+ = Description: Entry point for the Caregivers Portal application. Defines all
+ = the dependencies, configuration, middleware, database operations and
+ = controllers needed for the app to run. Defines the root route and sets
+ = up the listener for the html port.
+ =
  ===============================================================================
  ===============================================================================
  */
@@ -32,10 +37,9 @@ require('dotenv').config();
 const app = express()
 const db = mongoose.connection
 const PORT = process.env.PORT || 3000; // Allows use of Heroku's or local port.
-// const mongodbURI = process.env.MONGODBURI || 'mongodb://localhost:27017/caregivers';
+const mongodbURI = 'mongodb://localhost:27017/caregivers';
 
-const mongodbURI = process.env.MONGODBURI;
-
+// const mongodbURI = process.env.MONGODBURI;
 
 /*
  ===============================================================================
@@ -45,20 +49,14 @@ const mongodbURI = process.env.MONGODBURI;
 
 app.use(methodOverride('_method'));     // Allow POST, PUT and DELETE from a form.
 app.use(express.urlencoded({ extended: false }));
-                                        // Populates req.body with parsed info
-                                        // from forms.
 app.use(express.static('public'));      // Public folder for static assets.
 app.use(express.json());                // Parses JSON.
 
 app.use(
     session({
         secret: process.env.SECRET,     // Radom string to prevent hacking
-        //
-        // More info for the following at
-        // https://www.npmjs.com/package/express-session#resave
-        //
         resave: false,                  // Default
-        saveUninitialized: false        // Default
+        saveUninitialized: false
     })
 )
 
@@ -88,7 +86,6 @@ mongoose.connect(
 db.on('error', (err) => console.log('Mongod is not running.', err));
 db.on('connected', () => console.log('Mongo connected: ', mongodbURI));
 db.on('disconnected', () => console.log('Mongod disconnected.'));
-
 db.on('open' , () => {});
 
 /*
@@ -107,10 +104,6 @@ app.use('/reviews', require('./controllers/reviews_controller.js'))
  = Define root route
  ===============================================================================
  */
-
-// app.get('/' , (req, res) => {
-//     res.send('Hello World!');
-// });
 
 app.get('/', (req, res) => res.redirect('/caregivers'));
 

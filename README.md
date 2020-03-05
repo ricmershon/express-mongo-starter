@@ -6,48 +6,40 @@ Ric Mershon
 
 ## Background
 See the [project markdown](https://git.generalassemb.ly/Software-Engineering-Immersive-Remote/SEIR-Waverider/tree/master/projects/project_2) for more information.
-
-### Top Headlines
-Returns breaking news for a country and category. Ajax call from app.js:
-```
-$.ajax({
-    url: "https://newsapi.org/v2/top-headlines?country="
-     + country +  "&category=" + category + "&apiKey="
-}).then(
-    (data) => {
-        ...
-    },
-    () => console.log('unable to retrieve data')
-)
-```
-### Everything
-Returns breaking news from around the world based on keywords and keyword phrases. Ajax call from app.js:
-```
-$.ajax({
-    url: "https://newsapi.org/v2/everything?language=en&q="
-     + keyword + "&apiKey="
-}).then(
-    (data) => {
-        ...
-    },
-    () => console.log('unable to retrieve data')
-)
-```
-See https://newsapi.org/docs/endpoints for more information.
-
 ## Accessing the Application
 
-Got to https://portfolio.ricmershon.com.
-
-## Wireframes
-Wireframe were created with Adobe XD. They can be found at [wireframes](https://xd.adobe.com/view/cc534d99-fba5-4fc9-525b-4cb79c5e129a-ba62/).
+Got to https://rmersh-express-mongo-example.herokuapp.com/.
 
 ## Notable Features
 
-1. Built with HTML, CSS, JavaScript and jQuery.
+1. Built with NodeJS backend tools: express, method-override, mongoose, express-session, dotenv, public.
+2. Uses a central server file, server.js, as an entry point for the applications. Defines all the dependencies, configuration, middleware, database opertaions and controllers needed for the app to run. Defines the root route and sets up the listener for the html port.
 2. Uses Ajax to make a request to an external database.
 3. Incorporates responsive design.
 4. Sticky menu and side bars.
+
+## Routes
+There are routes for `caregivers`, `reviews`, `sessions` and `users`.
+
+### Caregivers Routes
+
+| Action | URL | HTTP Verb |
+| ------ |---  | --------- |
+| Index | /caregivers | GET |
+| New | /caregivers/new | GET |
+| Create | /caregivers | POST |
+| Show | /caregivers/:id | GET |
+| Edit | /caregivers/:id/edit | GET |
+| Update | /caregivers/:id | PUT |
+| Destroy | /caregivers/:id | DELETE |
+
+### Additional Routes for Setup and Reset
+
+| Action | URL | HTTP Verb |
+| ------ |---  | --------- |
+| Seed | /caregivers/seed | GET |
+| Remove | /caregivers/remove | GET |
+
 
 ## Layout Details and Approach
 I'm finally getting the hang of CSS--a little. I picked up a dotted Moleskine notebook (thank you Karolin Rafalski for the recommendation!) and started working the elements from the *inside out*. I found this to be EXTREMELY helpful, and would recommend this approach to anyone struggling with CSS and Flexbox. I ended up with pages and pages

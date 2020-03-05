@@ -1,10 +1,17 @@
 /*
  ===============================================================================
+ ===============================================================================
  =
- = Caregivers Schema
+ = Project 2: Caregivers Portal
+ = Module: caregivers.js
+ = Created: 02-Mar-2020
+ = Created by: Ric Mershon
+ =
+ = Description: Defines the Caregivers schema.
  =
  ===============================================================================
- */
+ ===============================================================================
+*/
 
 const mongoose = require('mongoose');
 const Review = require('./reviews.js')

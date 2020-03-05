@@ -1,3 +1,17 @@
+<!--
+ ===============================================================================
+ ===============================================================================
+ =
+ = Project 2: Caregivers Portal
+ = Module: nav.ejs
+ = Created: 02-Mar-2020
+ =
+ = Description: Navigation partial.
+ =
+ ===============================================================================
+ ===============================================================================
+ -->
+
 <nav class="navbar navbar-expand-md navbar-dark fixed-top primary-theme">
     <a class="navbar-brand" href="/caregivers">Caregivers</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,7 +30,6 @@
             <span class="nav-item inactive">
                 <a class="nav-link disabled" href="#" style="color: white;">Welcome <%= currentUser.username %></a>
             </span>
-
             <form action="/sessions?_method=DELETE" method="POST">
                 <button type="submit" class="btn btn-outline-light">Log Out</button>
             </form>
