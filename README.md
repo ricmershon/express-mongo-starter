@@ -23,7 +23,6 @@ Got to https://rmersh-express-mongo-example.herokuapp.com/.
 There are schemas for `caregivers`, `users` and `reviews`.
 
 ### Caregiver Schema
-
 ```
 const careGiverSchema = mongoose.Schema(
     {
@@ -45,18 +44,7 @@ const careGiverSchema = mongoose.Schema(
     { timestamps: true }
 );
 ```
-
-### Users Schema
-
-```
-const userSchema = new Schema({
-    username: { type: String, unique: true, required: true },
-    password: String
-})
-```
-
 ### Reviews Schema
-
 ```
 const reviewSchema = new mongoose.Schema(
     {
@@ -65,6 +53,13 @@ const reviewSchema = new mongoose.Schema(
         rating: { type: Number, max: 5 }
     }
 )
+```
+### Users Schema
+```
+const userSchema = new Schema({
+    username: { type: String, unique: true, required: true },
+    password: String
+})
 ```
 
 ## Routes
@@ -138,6 +133,7 @@ Several partials are used:
 
 ## Areas for Improvement
 * Clean up footer.
+* General navigation.
 * A lot of additional functionality.
 * Would like to understand better how to incorporate code into objects.
 

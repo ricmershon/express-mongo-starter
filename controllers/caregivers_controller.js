@@ -203,7 +203,7 @@ careGivers.get('/:id/edit', isAuthenticated, (req, res) => {
             res.render('caregivers/edit.ejs', {
                 careGiver: foundCareGiver,
                 currentUser: req.session.currentUser,
-                tabTitle: 'Update Caregiver Entry'
+                tabTitle: 'Update Caregiver'
             })
         }
     })
