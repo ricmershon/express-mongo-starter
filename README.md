@@ -135,6 +135,7 @@ Several partials are used:
 ## Known Issues
 * Proper handling of failed logins.
 * .env issues.
+* Review routes in a separate file.
 
 ## Additional Functionality/Routes/User Types
 * User
