@@ -37,9 +37,8 @@ require('dotenv').config();
 const app = express()
 const db = mongoose.connection
 const PORT = process.env.PORT || 3000; // Allows use of Heroku's or local port.
-const mongodbURI = 'mongodb://localhost:27017/caregivers';
-
-// const mongodbURI = process.env.MONGODBURI;
+// const mongodbURI = 'mongodb://localhost:27017/caregivers';
+const mongodbURI = process.env.MONGODBURI;
 
 /*
  ===============================================================================
