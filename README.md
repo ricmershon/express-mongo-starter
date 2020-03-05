@@ -134,7 +134,7 @@ Several partials are used:
 * Proper handling of failed logins.
 * .env issues.
 
-## Additional Routes/User Types
+## Additional Functionality/Routes/User Types
 * User
 * Care manager
 * Care provider
